@@ -31,6 +31,8 @@ LIBS =
 DOX_PATH = doc
 DOX_FILE = Doxyfile
 
+# assets
+ASSETS_PATH = assets
 
 .PHONY: docs
 docs:
@@ -53,6 +55,7 @@ dirs:
 	@mkdir -p $(BIN_PATH)
 	@mkdir -p $(DOX_PATH)
 	@mkdir -p $(SRC_PATH)
+	@mkdir -p $(ASSETS_PATH)
 	@mkdir -p include
 
 .PHONY: clean
