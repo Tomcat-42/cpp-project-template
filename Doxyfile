@@ -473,25 +473,25 @@ EXTRACT_ALL            = YES
 # be included in the documentation.
 # The default value is: NO.
 
-EXTRACT_PRIVATE        = NO
+EXTRACT_PRIVATE        = YES
 
 # If the EXTRACT_PRIV_VIRTUAL tag is set to YES, documented private virtual
 # methods of a class will be included in the documentation.
 # The default value is: NO.
 
-EXTRACT_PRIV_VIRTUAL   = NO
+EXTRACT_PRIV_VIRTUAL   = YES
 
 # If the EXTRACT_PACKAGE tag is set to YES, all members with package or internal
 # scope will be included in the documentation.
 # The default value is: NO.
 
-EXTRACT_PACKAGE        = NO
+EXTRACT_PACKAGE        = YES
 
 # If the EXTRACT_STATIC tag is set to YES, all static members of a file will be
 # included in the documentation.
 # The default value is: NO.
 
-EXTRACT_STATIC         = NO
+EXTRACT_STATIC         = YES
 
 # If the EXTRACT_LOCAL_CLASSES tag is set to YES, classes (and structs) defined
 # locally in source files will be included in the documentation. If set to NO,
@@ -507,7 +507,7 @@ EXTRACT_LOCAL_CLASSES  = YES
 # included.
 # The default value is: NO.
 
-EXTRACT_LOCAL_METHODS  = NO
+EXTRACT_LOCAL_METHODS  = YES
 
 # If this flag is set to YES, the members of anonymous namespaces will be
 # extracted and appear in the documentation as a namespace called
@@ -516,7 +516,7 @@ EXTRACT_LOCAL_METHODS  = NO
 # are hidden.
 # The default value is: NO.
 
-EXTRACT_ANON_NSPACES   = NO
+EXTRACT_ANON_NSPACES   = YES
 
 # If the HIDE_UNDOC_MEMBERS tag is set to YES, doxygen will hide all
 # undocumented members inside documented classes or files. If set to NO these
@@ -906,6 +906,526 @@ FILE_PATTERNS          = *.c \
 
 # The RECURSIVE tag can be used to specify whether or not subdirectories should
 # be searched for input files as well.
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@Tomcat-42
+Tomcat-42 /
+cpp-project-template
+
+1
+0
+
+    0
+
+Code
+Issues 0
+Pull requests 0
+Actions
+Projects 0
+Wiki
+Security
+Insights
+Settings
+cpp-project-template/
+831
+
+​
+
+832
+
+INPUT                  = .
+
+833
+
+​
+
+834
+
+# This tag can be used to specify the character encoding of the source files
+
+835
+
+# that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
+
+836
+
+# libiconv (or the iconv built into libc) for the transcoding. See the libiconv
+
+837
+
+# documentation (see: https://www.gnu.org/software/libiconv/) for the list of
+
+838
+
+# possible encodings.
+
+839
+
+# The default value is: UTF-8.
+
+840
+
+​
+
+841
+
+INPUT_ENCODING         = UTF-8
+
+842
+
+​
+
+843
+
+# If the value of the INPUT tag contains directories, you can use the
+
+844
+
+# FILE_PATTERNS tag to specify one or more wildcard patterns (like *.cpp and
+
+845
+
+# *.h) to filter out the source-files in the directories.
+
+846
+
+#
+
+847
+
+# Note that for custom extensions or not directly supported extensions you also
+
+848
+
+# need to set EXTENSION_MAPPING for the extension otherwise the files are not
+
+849
+
+# read by doxygen.
+
+850
+
+#
+
+851
+
+# If left blank the following patterns are tested:*.c, *.cc, *.cxx, *.cpp,
+
+852
+
+# *.c++, *.java, *.ii, *.ixx, *.ipp, *.i++, *.inl, *.idl, *.ddl, *.odl, *.h,
+
+853
+
+# *.hh, *.hxx, *.hpp, *.h++, *.cs, *.d, *.php, *.php4, *.php5, *.phtml, *.inc,
+
+854
+
+# *.m, *.markdown, *.md, *.mm, *.dox (to be provided as doxygen C comment),
+
+855
+
+# *.doc (to be provided as doxygen C comment), *.txt (to be provided as doxygen
+
+856
+
+# C comment), *.py, *.pyw, *.f90, *.f95, *.f03, *.f08, *.f, *.for, *.tcl, *.vhd,
+
+857
+
+# *.vhdl, *.ucf, *.qsf and *.ice.
+
+858
+
+​
+
+859
+
+FILE_PATTERNS          = *.c \
+
+860
+
+                         *.cc \
+
+861
+
+                         *.cxx \
+
+862
+
+                         *.cpp \
+
+863
+
+                         *.c++ \
+
+864
+
+                         *.java \
+
+865
+
+                         *.ii \
+
+866
+
+                         *.ixx \
+
+867
+
+                         *.ipp \
+
+868
+
+                         *.i++ \
+
+869
+
+                         *.inl \
+
+870
+
+                         *.idl \
+
+871
+
+                         *.ddl \
+
+872
+
+                         *.odl \
+
+873
+
+                         *.h \
+
+874
+
+                         *.hh \
+
+875
+
+                         *.hxx \
+
+876
+
+                         *.hpp \
+
+877
+
+                         *.h++ \
+
+878
+
+                         *.cs \
+
+879
+
+                         *.d \
+
+880
+
+                         *.php \
+
+881
+
+                         *.php4 \
+
+882
+
+                         *.php5 \
+
+883
+
+                         *.phtml \
+
+@Tomcat-42
+Commit changes
+Commit summary
+Optional extended description
+
+Choose which email address to associate with this commit
+Commit directly to the master branch.
+Create a new branch for this commit and start a pull request. Learn more about pull requests.
+
+    © 2020 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@Tomcat-42
+Tomcat-42 /
+cpp-project-template
+
+1
+0
+
+    0
+
+Code
+Issues 0
+Pull requests 0
+Actions
+Projects 0
+Wiki
+Security
+Insights
+Settings
+cpp-project-template/
+831
+
+​
+
+832
+
+INPUT                  = .
+
+833
+
+​
+
+834
+
+# This tag can be used to specify the character encoding of the source files
+
+835
+
+# that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
+
+836
+
+# libiconv (or the iconv built into libc) for the transcoding. See the libiconv
+
+837
+
+# documentation (see: https://www.gnu.org/software/libiconv/) for the list of
+
+838
+
+# possible encodings.
+
+839
+
+# The default value is: UTF-8.
+
+840
+
+​
+
+841
+
+INPUT_ENCODING         = UTF-8
+
+842
+
+​
+
+843
+
+# If the value of the INPUT tag contains directories, you can use the
+
+844
+
+# FILE_PATTERNS tag to specify one or more wildcard patterns (like *.cpp and
+
+845
+
+# *.h) to filter out the source-files in the directories.
+
+846
+
+#
+
+847
+
+# Note that for custom extensions or not directly supported extensions you also
+
+848
+
+# need to set EXTENSION_MAPPING for the extension otherwise the files are not
+
+849
+
+# read by doxygen.
+
+850
+
+#
+
+851
+
+# If left blank the following patterns are tested:*.c, *.cc, *.cxx, *.cpp,
+
+852
+
+# *.c++, *.java, *.ii, *.ixx, *.ipp, *.i++, *.inl, *.idl, *.ddl, *.odl, *.h,
+
+853
+
+# *.hh, *.hxx, *.hpp, *.h++, *.cs, *.d, *.php, *.php4, *.php5, *.phtml, *.inc,
+
+854
+
+# *.m, *.markdown, *.md, *.mm, *.dox (to be provided as doxygen C comment),
+
+855
+
+# *.doc (to be provided as doxygen C comment), *.txt (to be provided as doxygen
+
+856
+
+# C comment), *.py, *.pyw, *.f90, *.f95, *.f03, *.f08, *.f, *.for, *.tcl, *.vhd,
+
+857
+
+# *.vhdl, *.ucf, *.qsf and *.ice.
+
+858
+
+​
+
+859
+
+FILE_PATTERNS          = *.c \
+
+860
+
+                         *.cc \
+
+861
+
+                         *.cxx \
+
+862
+
+                         *.cpp \
+
+863
+
+                         *.c++ \
+
+864
+
+                         *.java \
+
+865
+
+                         *.ii \
+
+866
+
+                         *.ixx \
+
+867
+
+                         *.ipp \
+
+868
+
+                         *.i++ \
+
+869
+
+                         *.inl \
+
+870
+
+                         *.idl \
+
+871
+
+                         *.ddl \
+
+872
+
+                         *.odl \
+
+873
+
+                         *.h \
+
+874
+
+                         *.hh \
+
+875
+
+                         *.hxx \
+
+876
+
+                         *.hpp \
+
+877
+
+                         *.h++ \
+
+878
+
+                         *.cs \
+
+879
+
+                         *.d \
+
+880
+
+                         *.php \
+
+881
+
+                         *.php4 \
+
+882
+
+                         *.php5 \
+
+883
+
+                         *.phtml \
+
+@Tomcat-42
+Commit changes
+Commit summary
+Optional extended description
+
+Choose which email address to associate with this commit
+Commit directly to the master branch.
+Create a new branch for this commit and start a pull request. Learn more about pull requests.
+
+    © 2020 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Help
+
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
+
+    Status
+    Help
+
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
+
 # The default value is: NO.
 
 RECURSIVE              = YES
