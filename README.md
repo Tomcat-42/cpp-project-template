@@ -1,23 +1,40 @@
 # cpp-project-template
 
-A small c/c++ project template using ```make``` as builder and ```doxygen``` for documentation.
+A small/medium c++ project template using ```make``` as builder and ```doxygen``` for documentation.
 
 ## docs
 
-The```Doxyfile``` file holds *doxygen* parameters.Documentation will be saved in the ```doc/``` dir , and a optional project logo must be in the file ```assets/logo.png```.
+The ```Doxyfile``` file holds *doxygen* parameters.
 
-Use ``` make docs``` for building documentation.
+Documentation will be saved in the ```doc/``` dir , and a optional project logo must be in the file ```assets/logo.png```.
 
-## dirs
+Use the following target for building documentation.
 
-To generate the default dirs: ```make dirs```.
+```bash
+make docs
+```
 
-## compile and clean
+## Targets
 
-Compile:
+```bash
+# default is release
+make
 
-```make all``` or ```make release```
+# Running the target
+make run
 
-Clean:
+# all
+make all
 
-```make clean```
+# explicitly realese
+make release
+
+# Test
+make test
+
+# Debug
+make debug
+
+# clean
+make clean
+```

@@ -1,91 +1,83 @@
+# Common directories, files names and variables
+SRC_EXT := cpp
+HDR_EXT := hpp
+NAME := main
+COMNON_PATH := ./
+BUILD_PATH := $(COMNON_PATH)build
+BIN_PATH := $(COMNON_PATH)bin
+SRC_PATH := $(COMNON_PATH)src
+INCLUDE_PATH := $(shell find $(SRC_PATH) -type d) ./include /usr/local/include
+INCLUDE_FLAGS := $(addprefix -I,$(INCLUDE_PATH))
+TARGET := $(BIN_PATH)/$(NAME)
+
+# Source files, headers, objects and dependencies
+SRC_FILES := $(shell find $(SRC_PATH) -type f -name '*.${SRC_EXT}' | sort -k 1nr | cut -f2-)
+INCLUDE_FILES := $(shell find $(INCLUDE_PATH) -type f -name '*.${HDR_EXT}' | sort -k 1nr | cut -f2-)
+OBJ_FILES := $(SRC_FILES:$(SRC_PATH)/%.${SRC_EXT}=$(BUILD_PATH)/%.o)
+DEP_FILES := $(OBJECTS:.o=.d)
+
+# Compiler/linker flags and variables
 CXX ?= g++
+INCLUDES := $(INCLUDE_FLAGS)
+CXXFLAGS := -Wall -Werror -Wextra -Wpedantic -g ${INCLUDES} -pipe -std=c++23 -fopenmp
+LDFLAGS  := -lm $(shell pkg-config sfml-all --libs)
+LIBS :=
 
-# path #
-SRC_PATH = src
-BUILD_PATH = build
-BIN_PATH = $(BUILD_PATH)/bin
-
-# executable # 
-BIN_NAME = project
-
-# extensions #
-SRC_EXT = cpp
-
-# code lists #
-# Find all source files in the source directory, sorted by
-# most recently modified
-SOURCES = $(shell find $(SRC_PATH) -name '*.$(SRC_EXT)' | sort -k 1nr | cut -f2-)
-# Set the object file names, with the source directory stripped
-# from the path, and the build path prepended in its place
-OBJECTS = $(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
-# Set the dependency files that will be used to add header dependencies
-DEPS = $(OBJECTS:.o=.d)
-
-# flags #
-COMPILE_FLAGS = -std=c++11 -Wall -Wextra -g
-INCLUDES = -I include/ -I /usr/local/include
-# Space-separated pkg-config libraries used by this project
-LIBS =
-
-# doxygen docs #
+# doxygen documentation
 DOX_PATH = doc
 DOX_FILE = Doxyfile
-
-# assets
 ASSETS_PATH = assets
 
+# First and default target
+.PHONY: release
+release: CXXFLAGS += -O3 -mtune=native -march=native -fomit-frame-pointer
+release: all
+
+# Creating documentation
 .PHONY: docs
 docs:
-	@echo Building documentation
 	@mkdir -p $(DOX_PATH)
 	@doxygen $(DOX_FILE) &>/dev/null
 
-.PHONY: default_target
-default_target: release
-
-.PHONY: release
-release: export CXXFLAGS := $(CXXFLAGS) $(COMPILE_FLAGS)
-release: dirs
-	@$(MAKE) all
-
-.PHONY: dirs
-dirs:
-	@echo "Creating directories"
-	@mkdir -p $(dir $(OBJECTS))
-	@mkdir -p $(BIN_PATH)
-	@mkdir -p $(DOX_PATH)
-	@mkdir -p $(SRC_PATH)
-	@mkdir -p $(ASSETS_PATH)
-	@mkdir -p include
-
+# Project Cleaning
 .PHONY: clean
 clean:
-	@echo "Deleting $(BIN_NAME) symlink"
-	@$(RM) $(BIN_NAME)
-	@echo "Deleting directories"
 	@$(RM) -r $(BUILD_PATH)
 	@$(RM) -r $(BIN_PATH)
-	@echo "Deleting Documentation"
 	@$(RM) -r $(DOX_PATH)
 
-# checks the executable and symlinks to the output
+# base directories creation
+$(BUILD_PATH) $(BIN_PATH) $(DOX_PATH) $(SRC_PATH) $(ASSETS_PATH) include:
+	@mkdir -p $@
+
+# all target, which depends on the base dirs and the target file
 .PHONY: all
-all: $(BIN_PATH)/$(BIN_NAME)
-	@echo "Making symlink: $(BIN_NAME) -> $<"
-	@$(RM) $(BIN_NAME)
-	@ln -s $(BIN_PATH)/$(BIN_NAME) $(BIN_NAME)
+all: $(BUILD_PATH) $(BIN_PATH) $(DOX_PATH) $(SRC_PATH) $(ASSETS_PATH) include $(TARGET)
 
-# Creation of the executable
-$(BIN_PATH)/$(BIN_NAME): $(OBJECTS)
-	@echo "Linking: $@"
-	$(CXX) $(OBJECTS) -o $@
+$(TARGET): $(INCLUDE_FILES) $(OBJ_FILES)
+	mkdir -p $(dir $@)
+	$(CXX) $(OBJ_FILES) -o $@ $(CXXFLAGS) $(LDFLAGS) $(LIBS)
 
-# Add dependency files, if they exist
--include $(DEPS)
-
-# Source file rules
-# After the first compilation they will be joined with the rules from the
-# dependency files to provide header dependencies
+-include $(DEP_FILES)
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.$(SRC_EXT)
-	@echo "Compiling: $< -> $@"
+	mkdir -p $(dir $@) # TODO: find a better way to do this
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -MP -MMD -c $< -o $@
+
+# Testing
+.PHONY: test
+test: all
+	# TODO
+
+# Debugging
+.PHONY: debug
+debug: CXXFLAGS += -g
+debug: all
+	@gdb ${TARGET}
+
+# Running
+.PHONY: run
+run: all
+	@./${TARGET}
+
+yes:
+	@echo $(OBJ_FILES)
